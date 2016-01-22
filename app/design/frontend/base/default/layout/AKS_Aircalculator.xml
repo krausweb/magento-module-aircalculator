@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <aircalculator_index_index>
+        <reference name="content">
+            <!-- В результате type=«aircalculator/aircalculator» будет преобразован в класс блока AKS_AirConditionerCalculator_Block_Aircalculator -->
+            <block type="aircalculator/aircalculator" template="aircalculator/index.phtml" />
+        </reference>
+    </aircalculator_index_index>
+</layout>

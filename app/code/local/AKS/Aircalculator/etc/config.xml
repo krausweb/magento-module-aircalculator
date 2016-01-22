@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AKS_Aircalculator>
+            <version>1.0.0</version>
+        </AKS_Aircalculator>
+    </modules>
+    <global>
+        <blocks>
+            <aircalculator>
+                <class>AKS_Aircalculator_Block</class>
+            </aircalculator>
+        </blocks>
+        <models>
+            <aircalculator>
+                <class>AKS_Aircalculator_Model</class>
+                <resourceModel>aircalculator_resource</resourceModel>
+            </aircalculator>
+            <aircalculator_resource>
+                <class>AKS_Aircalculator_Model_Resource</class>
+                <entities>
+                    <table_aircalculator>
+                        <table>aks_aircalculator</table>
+                    </table_aircalculator>
+                </entities>
+            </aircalculator_resource>
+        </models>
+        <helpers>
+            <aircalculator>
+                <class>AKS_Aircalculator_Helper</class>
+            </aircalculator>
+        </helpers>
+        <resources>
+            <aircalculator_setup>
+                <setup>
+                    <module>AKS_Aircalculator</module>
+                </setup>
+            </aircalculator_setup>
+        </resources>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <aircalculator>
+                    <file>AKS_Aircalculator.xml</file>
+                </aircalculator>
+            </updates>
+        </layout>
+        <routers>
+            <aircalculator>
+                <use>standard</use>
+                <args>
+                    <module>AKS_Aircalculator</module>
+                    <frontName>aircalculator</frontName>
+                </args>
+            </aircalculator>
+        </routers>
+    </frontend>
+    <!-- путь до контроллера -->
+    <admin>
+        <routers>
+            <aircalculator>
+                <use>admin</use>
+                <args>
+                    <module>AKS_Aircalculator</module>
+                    <!-- иногда, что бы не было проблем с сессиями(Mage::registry("aircalculator")), названия во frontName - должны отличаться -->
+                    <frontName>aircalculator</frontName>
+                </args>
+            </aircalculator>
+        </routers>
+    </admin>
+    <!--  пункт меню для модуля в админке -->
+    <adminhtml>
+        <menu>
+            <!-- AKS_Aircalculator_Helper_Data -->
+            <aircalculator module="aircalculator">
+                <title>Air Calculator</title>
+                <sort_order>77</sort_order>
+                <!-- http://site.com/index.php/[frontName]/[controller]/index/, где [frontName] — это
+                    значение узла config/admin/routers/[router]/args/[frontName]
+                    , а [controller] — это путь, из которого генерируется класс контроллера из
+                    класса модуля AKS_Aircalculator + [controller] + Controller. -->
+                <action>aircalculator/adminhtml_aircalculator</action>
+            </aircalculator>
+        </menu>
+    </adminhtml>
+</config>

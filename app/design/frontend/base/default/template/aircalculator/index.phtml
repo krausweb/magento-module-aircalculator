@@ -1,0 +1,40 @@
+<?php
+/**
+ * Created by Alexandr Krivonos
+ * Email: krausweb291985@gmail.com
+ * Date: 10/26/15
+ * Time: 6:05 PM
+ */
+?>
+
+<style>
+    .aircalculator input    { padding: 2px 0 2px 10px; width: 125px; height: 24px; border: 2px solid #fff; border-radius: 4px; box-shadow: 0 0 4px rgba(0, 0, 0, 0.27);}
+    .aircalculator label    { padding: 6px 0 6px 10px; min-width: 300px; border-bottom: 1px solid #eeeeee; cursor: pointer; float: left; }
+    .aircalculator li       { clear: both; }
+    .aircalculator          { }
+    .aircalculator select   { width: 140px;}
+</style>
+
+<div ng-app="aircalculatorApp">
+    <div ng-controller="aircalculatorCtrl">
+
+        <h1>{{fields.settings_h1}}</h1>
+
+        <ul class="aircalculator">
+            <li ng-repeat="item in dataItems" ng-if="item.aircalculator_field_type!=3">
+                <label for="{{item.aircalculator_field_key}}">{{item.aircalculator_field_name}}</label>
+
+                <select ng-if="item.aircalculator_field_type==2"
+                        ng-options="itm.id as itm.name for itm in windows_data" ng-model="fields.windows_orientation_id"></select>
+
+                <input ng-if="item.aircalculator_field_type==1" type="text" id="{{item.aircalculator_field_key}}" name="{{item.aircalculator_field_key}}"
+                       ng-model="fields[item.aircalculator_field_key]" ng-init="fields[item.aircalculator_field_key]=item.aircalculator_field_value"
+                       ng-disabled="item.aircalculator_field_key == 'power_conditioner'"
+                       value="{{ (item.aircalculator_field_key == 'power_conditioner')
+                        ? (( fields.windows_orientation_val * (fields.area * fields.ceiling_height * 0.035) + fields.count_tv_pc * 0.3 + fields.count_people * 0.1 ) | number:2)
+                        : item.aircalculator_field_value }}" />
+            </li>
+        </ul>
+
+    </div>
+</div>
